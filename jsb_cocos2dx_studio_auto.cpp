@@ -8597,6 +8597,23 @@ JSBool js_cocos2dx_studio_Widget_getWorldPosition(JSContext *cx, uint32_t argc, 
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
+JSBool js_cocos2dx_studio_Widget_init(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JSObject *obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	if (argc == 0) {
+		bool ret = cobj->init();
+		jsval jsret;
+		jsret = BOOLEAN_TO_JSVAL(ret);
+		JS_SET_RVAL(cx, vp, jsret);
+		return JS_TRUE;
+	}
+
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	return JS_FALSE;
+}
 JSBool js_cocos2dx_studio_Widget_getPositionPercent(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
@@ -8979,6 +8996,7 @@ void js_register_cocos2dx_studio_Widget(JSContext *cx, JSObject *global) {
 		JS_FN("removeNode", js_cocos2dx_studio_Widget_removeNode, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeAllNodes", js_cocos2dx_studio_Widget_removeAllNodes, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getWorldPosition", js_cocos2dx_studio_Widget_getWorldPosition, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("init", js_cocos2dx_studio_Widget_init, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getPositionPercent", js_cocos2dx_studio_Widget_getPositionPercent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeChildByTag", js_cocos2dx_studio_Widget_removeChildByTag, 2, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("hitTest", js_cocos2dx_studio_Widget_hitTest, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),

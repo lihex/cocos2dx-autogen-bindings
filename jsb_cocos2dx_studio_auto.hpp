@@ -464,6 +464,7 @@ JSBool js_cocos2dx_studio_Widget_getSizeType(JSContext *cx, uint32_t argc, jsval
 JSBool js_cocos2dx_studio_Widget_removeNode(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Widget_removeAllNodes(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Widget_getWorldPosition(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_Widget_init(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Widget_getPositionPercent(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Widget_removeChildByTag(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Widget_hitTest(JSContext *cx, uint32_t argc, jsval *vp);

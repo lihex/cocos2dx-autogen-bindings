@@ -7076,10 +7076,10 @@ cc.LayerMultiplex = {
 initWithArray : function () {},
 
 /**
- * @method switchToAndReleaseMe
+ * @method switchTo
  * @param {unsigned int}
  */
-switchToAndReleaseMe : function () {},
+switchTo : function () {},
 
 /**
  * @method addLayer
@@ -7088,10 +7088,10 @@ switchToAndReleaseMe : function () {},
 addLayer : function () {},
 
 /**
- * @method switchTo
+ * @method switchToAndReleaseMe
  * @param {unsigned int}
  */
-switchTo : function () {},
+switchToAndReleaseMe : function () {},
 
 /**
  * @method CCLayerMultiplex
@@ -10343,18 +10343,18 @@ cc.EGLViewProtocol = {
 getVisibleOrigin : function () {},
 
 /**
+ * @method getVisibleSize
+ * @return A value converted from C/C++ "cocos2d::CCSize"
+ */
+getVisibleSize : function () {},
+
+/**
  * @method setDesignResolutionSize
  * @param {float}
  * @param {float}
  * @param {ResolutionPolicy}
  */
 setDesignResolutionSize : function () {},
-
-/**
- * @method getVisibleSize
- * @return A value converted from C/C++ "cocos2d::CCSize"
- */
-getVisibleSize : function () {},
 
 };
 

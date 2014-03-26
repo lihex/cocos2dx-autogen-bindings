@@ -1883,6 +1883,12 @@ removeAllNodes : function () {},
 getWorldPosition : function () {},
 
 /**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ */
+init : function () {},
+
+/**
  * @method getPositionPercent
  * @return A value converted from C/C++ "cocos2d::CCPoint"
  */

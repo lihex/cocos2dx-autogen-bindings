@@ -2012,9 +2012,9 @@ void js_cocos2dx_CCLayerMultiplex_finalize(JSContext *cx, JSObject *obj);
 void js_register_cocos2dx_CCLayerMultiplex(JSContext *cx, JSObject *global);
 void register_all_cocos2dx(JSContext* cx, JSObject* obj);
 JSBool js_cocos2dx_CCLayerMultiplex_initWithArray(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool js_cocos2dx_CCLayerMultiplex_switchToAndReleaseMe(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool js_cocos2dx_CCLayerMultiplex_addLayer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCLayerMultiplex_switchTo(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCLayerMultiplex_addLayer(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCLayerMultiplex_switchToAndReleaseMe(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCLayerMultiplex_CCLayerMultiplex(JSContext *cx, uint32_t argc, jsval *vp);
 
 extern JSClass  *jsb_CCScene_class;
@@ -3019,8 +3019,8 @@ void js_cocos2dx_CCEGLViewProtocol_finalize(JSContext *cx, JSObject *obj);
 void js_register_cocos2dx_CCEGLViewProtocol(JSContext *cx, JSObject *global);
 void register_all_cocos2dx(JSContext* cx, JSObject* obj);
 JSBool js_cocos2dx_CCEGLViewProtocol_getVisibleOrigin(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool js_cocos2dx_CCEGLViewProtocol_setDesignResolutionSize(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCEGLViewProtocol_getVisibleSize(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCEGLViewProtocol_setDesignResolutionSize(JSContext *cx, uint32_t argc, jsval *vp);
 
 extern JSClass  *jsb_CCEGLView_class;
 extern JSObject *jsb_CCEGLView_prototype;

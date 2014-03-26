@@ -3047,6 +3047,12 @@ isInertiaScrollEnabled : function () {},
 setBounceEnabled : function () {},
 
 /**
+ * @method jumpToDestination
+ * @param {cocos2d::CCPoint}
+ */
+jumpToDestination : function () {},
+
+/**
  * @method jumpToTop
  */
 jumpToTop : function () {},
@@ -3085,6 +3091,12 @@ scrollToBottom : function () {},
  * @param {bool}
  */
 scrollToBottomRight : function () {},
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ */
+init : function () {},
 
 /**
  * @method removeNode

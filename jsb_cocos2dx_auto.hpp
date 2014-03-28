@@ -2582,6 +2582,7 @@ JSBool js_cocos2dx_CCClippingNode_getStencil(JSContext *cx, uint32_t argc, jsval
 JSBool js_cocos2dx_CCClippingNode_setAlphaThreshold(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCClippingNode_isInverted(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCClippingNode_create(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCClippingNode_CCClippingNode(JSContext *cx, uint32_t argc, jsval *vp);
 
 extern JSClass  *jsb_CCMotionStreak_class;
 extern JSObject *jsb_CCMotionStreak_prototype;

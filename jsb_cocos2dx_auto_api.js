@@ -8561,6 +8561,12 @@ setAlphaThreshold : function () {},
  */
 isInverted : function () {},
 
+/**
+ * @method CCClippingNode
+ * @constructor
+ */
+CCClippingNode : function () {},
+
 };
 
 /**

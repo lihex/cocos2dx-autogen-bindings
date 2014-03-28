@@ -43764,12 +43764,48 @@ JSBool js_cocos2dx_CCClippingNode_create(JSContext *cx, uint32_t argc, jsval *vp
 	JS_ReportError(cx, "wrong number of arguments");
 	return JS_FALSE;
 }
+JSBool js_cocos2dx_CCClippingNode_constructor(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	if (argc == 0) {
+		cocos2d::CCClippingNode* cobj = new cocos2d::CCClippingNode();
+		cocos2d::CCObject *_ccobj = dynamic_cast<cocos2d::CCObject *>(cobj);
+		if (_ccobj) {
+			_ccobj->autorelease();
+		}
+		TypeTest<cocos2d::CCClippingNode> t;
+		js_type_class_t *typeClass;
+		uint32_t typeId = t.s_id();
+		HASH_FIND_INT(_js_global_type_ht, &typeId, typeClass);
+		assert(typeClass);
+		JSObject *obj = JS_NewObject(cx, typeClass->jsclass, typeClass->proto, typeClass->parentProto);
+		JS_SET_RVAL(cx, vp, OBJECT_TO_JSVAL(obj));
+		// link the native object with the javascript object
+		js_proxy_t* p = jsb_new_proxy(cobj, obj);
+		JS_AddNamedObjectRoot(cx, &p->obj, "cocos2d::CCClippingNode");
+		return JS_TRUE;
+	}
+
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	return JS_FALSE;
+}
+
 
 
 extern JSObject *jsb_CCNode_prototype;
 
 void js_cocos2dx_CCClippingNode_finalize(JSFreeOp *fop, JSObject *obj) {
     CCLOGINFO("jsbindings: finalizing JS object %p (CCClippingNode)", obj);
+}
+
+static JSBool js_cocos2dx_CCClippingNode_ctor(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JSObject *obj = JS_THIS_OBJECT(cx, vp);
+    cocos2d::CCClippingNode *nobj = new cocos2d::CCClippingNode();
+    js_proxy_t* p = jsb_new_proxy(nobj, obj);
+    nobj->autorelease();
+    JS_AddNamedObjectRoot(cx, &p->obj, "cocos2d::CCClippingNode");
+    JS_SET_RVAL(cx, vp, JSVAL_VOID);
+    return JS_TRUE;
 }
 
 void js_register_cocos2dx_CCClippingNode(JSContext *cx, JSObject *global) {
@@ -43798,6 +43834,7 @@ void js_register_cocos2dx_CCClippingNode(JSContext *cx, JSObject *global) {
 		JS_FN("getStencil", js_cocos2dx_CCClippingNode_getStencil, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setAlphaThreshold", js_cocos2dx_CCClippingNode_setAlphaThreshold, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("isInverted", js_cocos2dx_CCClippingNode_isInverted, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+        JS_FN("ctor", js_cocos2dx_CCClippingNode_ctor, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FS_END
 	};
 
@@ -43810,7 +43847,7 @@ void js_register_cocos2dx_CCClippingNode(JSContext *cx, JSObject *global) {
 		cx, global,
 		jsb_CCNode_prototype,
 		jsb_CCClippingNode_class,
-		empty_constructor, 0,
+		js_cocos2dx_CCClippingNode_constructor, 0, // constructor
 		properties,
 		funcs,
 		NULL, // no static properties

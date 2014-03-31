@@ -552,6 +552,7 @@ JSBool js_cocos2dx_studio_Button_loadTextures(JSContext *cx, uint32_t argc, jsva
 JSBool js_cocos2dx_studio_Button_isScale9Enabled(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_getCapInsetDisabledRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_loadTextureNormal(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_Button_setTitlePosByPercent(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_setCapInsetsPressedRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_getTitleFontSize(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_getTitleFontName(JSContext *cx, uint32_t argc, jsval *vp);

@@ -10431,6 +10431,45 @@ JSBool js_cocos2dx_studio_Button_loadTextureNormal(JSContext *cx, uint32_t argc,
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
+JSBool js_cocos2dx_studio_Button_setTitlePosByPercent(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	jsval *argv = JS_ARGV(cx, vp);
+	JSBool ok = JS_TRUE;
+
+	JSObject *obj = NULL;
+	cocos2d::ui::Button* cobj = NULL;
+	obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cobj = (cocos2d::ui::Button *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	do {
+		if (argc == 2) {
+			double arg0;
+			ok &= JS_ValueToNumber(cx, argv[0], &arg0);
+			if (!ok) { ok = JS_TRUE; break; }
+			double arg1;
+			ok &= JS_ValueToNumber(cx, argv[1], &arg1);
+			if (!ok) { ok = JS_TRUE; break; }
+			cobj->setTitlePosByPercent(arg0, arg1);
+			JS_SET_RVAL(cx, vp, JSVAL_VOID);
+			return JS_TRUE;
+		}
+	} while(0);
+
+	do {
+		if (argc == 1) {
+			cocos2d::CCPoint arg0;
+			ok &= jsval_to_ccpoint(cx, argv[0], &arg0);
+			if (!ok) { ok = JS_TRUE; break; }
+			cobj->setTitlePosByPercent(arg0);
+			JS_SET_RVAL(cx, vp, JSVAL_VOID);
+			return JS_TRUE;
+		}
+	} while(0);
+
+	JS_ReportError(cx, "wrong number of arguments");
+	return JS_FALSE;
+}
 JSBool js_cocos2dx_studio_Button_setCapInsetsPressedRenderer(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	jsval *argv = JS_ARGV(cx, vp);
@@ -10648,6 +10687,7 @@ void js_register_cocos2dx_studio_Button(JSContext *cx, JSObject *global) {
 		JS_FN("isScale9Enabled", js_cocos2dx_studio_Button_isScale9Enabled, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getCapInsetDisabledRenderer", js_cocos2dx_studio_Button_getCapInsetDisabledRenderer, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("loadTextureNormal", js_cocos2dx_studio_Button_loadTextureNormal, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setTitlePosByPercent", js_cocos2dx_studio_Button_setTitlePosByPercent, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setCapInsetsPressedRenderer", js_cocos2dx_studio_Button_setCapInsetsPressedRenderer, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getTitleFontSize", js_cocos2dx_studio_Button_getTitleFontSize, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getTitleFontName", js_cocos2dx_studio_Button_getTitleFontName, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),

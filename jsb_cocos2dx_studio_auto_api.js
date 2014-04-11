@@ -1547,16 +1547,16 @@ setSizePercent : function () {},
 getCustomSize : function () {},
 
 /**
- * @method isFlipX
- * @return A value converted from C/C++ "bool"
+ * @method setFlipY
+ * @param {bool}
  */
-isFlipX : function () {},
+setFlipY : function () {},
 
 /**
- * @method setActionTag
- * @param {int}
+ * @method setFlipX
+ * @param {bool}
  */
-setActionTag : function () {},
+setFlipX : function () {},
 
 /**
  * @method getDescription
@@ -1571,10 +1571,10 @@ getDescription : function () {},
 getLeftInParent : function () {},
 
 /**
- * @method isFlipY
- * @return A value converted from C/C++ "bool"
+ * @method setOpacity
+ * @param {unsigned char}
  */
-isFlipY : function () {},
+setOpacity : function () {},
 
 /**
  * @method getTouchEndPos
@@ -1624,12 +1624,6 @@ isIgnoreContentAdaptWithSize : function () {},
  * @return A value converted from C/C++ "cocos2d::ui::WidgetType"
  */
 getWidgetType : function () {},
-
-/**
- * @method setLayoutParameter
- * @param {cocos2d::ui::LayoutParameter*}
- */
-setLayoutParameter : function () {},
 
 /**
  * @method getBottomInParent
@@ -1682,6 +1676,12 @@ isEnabled : function () {},
 removeNodeByTag : function () {},
 
 /**
+ * @method isFlipX
+ * @return A value converted from C/C++ "bool"
+ */
+isFlipX : function () {},
+
+/**
  * @method removeAllChildren
  */
 removeAllChildren : function () {},
@@ -1699,10 +1699,10 @@ isTouchEnabled : function () {},
 getContentSize : function () {},
 
 /**
- * @method getTouchStartPos
- * @return A value converted from C/C++ "cocos2d::CCPoint"
+ * @method setLayoutParameter
+ * @param {cocos2d::ui::LayoutParameter*}
  */
-getTouchStartPos : function () {},
+setLayoutParameter : function () {},
 
 /**
  * @method didNotSelectSelf
@@ -1763,16 +1763,16 @@ removeFromParent : function () {},
 getColor : function () {},
 
 /**
- * @method setFlipY
- * @param {bool}
+ * @method getSizePercent
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
  */
-setFlipY : function () {},
+getSizePercent : function () {},
 
 /**
- * @method setFlipX
- * @param {bool}
+ * @method getTouchStartPos
+ * @return A value converted from C/C++ "cocos2d::CCPoint"
  */
-setFlipX : function () {},
+getTouchStartPos : function () {},
 
 /**
  * @method removeAllChildrenWithCleanup
@@ -1784,6 +1784,12 @@ removeAllChildrenWithCleanup : function () {},
  * @method sortAllChildren
  */
 sortAllChildren : function () {},
+
+/**
+ * @method setActionTag
+ * @param {int}
+ */
+setActionTag : function () {},
 
 /**
  * @method ignoreContentAdaptWithSize
@@ -1805,22 +1811,10 @@ isBright : function () {},
 clippingParentAreaContainPoint : function () {},
 
 /**
- * @method getSizePercent
- * @return A value converted from C/C++ "cocos2d::CCPoint"
- */
-getSizePercent : function () {},
-
-/**
  * @method removeFromParentAndCleanup
  * @param {bool}
  */
 removeFromParentAndCleanup : function () {},
-
-/**
- * @method setOpacity
- * @param {unsigned char}
- */
-setOpacity : function () {},
 
 /**
  * @method getTopInParent
@@ -1913,6 +1907,12 @@ hitTest : function () {},
  * @return A value converted from C/C++ "bool"
  */
 isFocused : function () {},
+
+/**
+ * @method isFlipY
+ * @return A value converted from C/C++ "bool"
+ */
+isFlipY : function () {},
 
 /**
  * @method setSizeType

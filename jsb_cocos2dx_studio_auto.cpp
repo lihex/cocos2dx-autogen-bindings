@@ -7399,39 +7399,6 @@ JSBool js_cocos2dx_studio_Widget_setSizePercent(JSContext *cx, uint32_t argc, js
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_updateSizeAndPosition(JSContext *cx, uint32_t argc, jsval *vp)
-{
-	jsval *argv = JS_ARGV(cx, vp);
-	JSBool ok = JS_TRUE;
-
-	JSObject *obj = NULL;
-	cocos2d::ui::Widget* cobj = NULL;
-	obj = JS_THIS_OBJECT(cx, vp);
-	js_proxy_t *proxy = jsb_get_js_proxy(obj);
-	cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
-	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	do {
-		if (argc == 1) {
-			cocos2d::CCSize arg0;
-			ok &= jsval_to_ccsize(cx, argv[0], &arg0);
-			if (!ok) { ok = JS_TRUE; break; }
-			cobj->updateSizeAndPosition(arg0);
-			JS_SET_RVAL(cx, vp, JSVAL_VOID);
-			return JS_TRUE;
-		}
-	} while(0);
-
-	do {
-		if (argc == 0) {
-			cobj->updateSizeAndPosition();
-			JS_SET_RVAL(cx, vp, JSVAL_VOID);
-			return JS_TRUE;
-		}
-	} while(0);
-
-	JS_ReportError(cx, "wrong number of arguments");
-	return JS_FALSE;
-}
 JSBool js_cocos2dx_studio_Widget_getCustomSize(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
@@ -7449,24 +7416,7 @@ JSBool js_cocos2dx_studio_Widget_getCustomSize(JSContext *cx, uint32_t argc, jsv
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_isFlipX(JSContext *cx, uint32_t argc, jsval *vp)
-{
-	JSObject *obj = JS_THIS_OBJECT(cx, vp);
-	js_proxy_t *proxy = jsb_get_js_proxy(obj);
-	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
-	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 0) {
-		bool ret = cobj->isFlipX();
-		jsval jsret;
-		jsret = BOOLEAN_TO_JSVAL(ret);
-		JS_SET_RVAL(cx, vp, jsret);
-		return JS_TRUE;
-	}
-
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
-	return JS_FALSE;
-}
-JSBool js_cocos2dx_studio_Widget_setActionTag(JSContext *cx, uint32_t argc, jsval *vp)
+JSBool js_cocos2dx_studio_Widget_setFlipY(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	jsval *argv = JS_ARGV(cx, vp);
 	JSBool ok = JS_TRUE;
@@ -7475,10 +7425,30 @@ JSBool js_cocos2dx_studio_Widget_setActionTag(JSContext *cx, uint32_t argc, jsva
 	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
 	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
 	if (argc == 1) {
-		int arg0;
-		ok &= jsval_to_int32(cx, argv[0], (int32_t *)&arg0);
+		JSBool arg0;
+		ok &= JS_ValueToBoolean(cx, argv[0], &arg0);
 		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
-		cobj->setActionTag(arg0);
+		cobj->setFlipY(arg0);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
+	}
+
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+	return JS_FALSE;
+}
+JSBool js_cocos2dx_studio_Widget_setFlipX(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	jsval *argv = JS_ARGV(cx, vp);
+	JSBool ok = JS_TRUE;
+	JSObject *obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	if (argc == 1) {
+		JSBool arg0;
+		ok &= JS_ValueToBoolean(cx, argv[0], &arg0);
+		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
+		cobj->setFlipX(arg0);
 		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
@@ -7520,21 +7490,24 @@ JSBool js_cocos2dx_studio_Widget_getLeftInParent(JSContext *cx, uint32_t argc, j
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_isFlipY(JSContext *cx, uint32_t argc, jsval *vp)
+JSBool js_cocos2dx_studio_Widget_setOpacity(JSContext *cx, uint32_t argc, jsval *vp)
 {
+	jsval *argv = JS_ARGV(cx, vp);
+	JSBool ok = JS_TRUE;
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
 	js_proxy_t *proxy = jsb_get_js_proxy(obj);
 	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
 	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 0) {
-		bool ret = cobj->isFlipY();
-		jsval jsret;
-		jsret = BOOLEAN_TO_JSVAL(ret);
-		JS_SET_RVAL(cx, vp, jsret);
+	if (argc == 1) {
+		uint16_t arg0;
+		ok &= jsval_to_uint16(cx, argv[0], &arg0);
+		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
+		cobj->setOpacity(arg0);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
 
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
 JSBool js_cocos2dx_studio_Widget_getTouchEndPos(JSContext *cx, uint32_t argc, jsval *vp)
@@ -7685,31 +7658,37 @@ JSBool js_cocos2dx_studio_Widget_getWidgetType(JSContext *cx, uint32_t argc, jsv
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_setLayoutParameter(JSContext *cx, uint32_t argc, jsval *vp)
+JSBool js_cocos2dx_studio_Widget_updateSizeAndPosition(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	jsval *argv = JS_ARGV(cx, vp);
 	JSBool ok = JS_TRUE;
-	JSObject *obj = JS_THIS_OBJECT(cx, vp);
-	js_proxy_t *proxy = jsb_get_js_proxy(obj);
-	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
-	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 1) {
-		cocos2d::ui::LayoutParameter* arg0;
-		do {
-			if (!argv[0].isObject()) { ok = JS_FALSE; break; }
-			js_proxy_t *proxy;
-			JSObject *tmpObj = JSVAL_TO_OBJECT(argv[0]);
-			proxy = jsb_get_js_proxy(tmpObj);
-			arg0 = (cocos2d::ui::LayoutParameter*)(proxy ? proxy->ptr : NULL);
-			JSB_PRECONDITION2( arg0, cx, JS_FALSE, "Invalid Native Object");
-		} while (0);
-		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
-		cobj->setLayoutParameter(arg0);
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
-		return JS_TRUE;
-	}
 
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+	JSObject *obj = NULL;
+	cocos2d::ui::Widget* cobj = NULL;
+	obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	do {
+		if (argc == 1) {
+			cocos2d::CCSize arg0;
+			ok &= jsval_to_ccsize(cx, argv[0], &arg0);
+			if (!ok) { ok = JS_TRUE; break; }
+			cobj->updateSizeAndPosition(arg0);
+			JS_SET_RVAL(cx, vp, JSVAL_VOID);
+			return JS_TRUE;
+		}
+	} while(0);
+
+	do {
+		if (argc == 0) {
+			cobj->updateSizeAndPosition();
+			JS_SET_RVAL(cx, vp, JSVAL_VOID);
+			return JS_TRUE;
+		}
+	} while(0);
+
+	JS_ReportError(cx, "wrong number of arguments");
 	return JS_FALSE;
 }
 JSBool js_cocos2dx_studio_Widget_getBottomInParent(JSContext *cx, uint32_t argc, jsval *vp)
@@ -7878,6 +7857,23 @@ JSBool js_cocos2dx_studio_Widget_removeNodeByTag(JSContext *cx, uint32_t argc, j
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
+JSBool js_cocos2dx_studio_Widget_isFlipX(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JSObject *obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	if (argc == 0) {
+		bool ret = cobj->isFlipX();
+		jsval jsret;
+		jsret = BOOLEAN_TO_JSVAL(ret);
+		JS_SET_RVAL(cx, vp, jsret);
+		return JS_TRUE;
+	}
+
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	return JS_FALSE;
+}
 JSBool js_cocos2dx_studio_Widget_removeAllChildren(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
@@ -7927,21 +7923,31 @@ JSBool js_cocos2dx_studio_Widget_getContentSize(JSContext *cx, uint32_t argc, js
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_getTouchStartPos(JSContext *cx, uint32_t argc, jsval *vp)
+JSBool js_cocos2dx_studio_Widget_setLayoutParameter(JSContext *cx, uint32_t argc, jsval *vp)
 {
+	jsval *argv = JS_ARGV(cx, vp);
+	JSBool ok = JS_TRUE;
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
 	js_proxy_t *proxy = jsb_get_js_proxy(obj);
 	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
 	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 0) {
-		cocos2d::CCPoint ret = cobj->getTouchStartPos();
-		jsval jsret;
-		jsret = ccpoint_to_jsval(cx, ret);
-		JS_SET_RVAL(cx, vp, jsret);
+	if (argc == 1) {
+		cocos2d::ui::LayoutParameter* arg0;
+		do {
+			if (!argv[0].isObject()) { ok = JS_FALSE; break; }
+			js_proxy_t *proxy;
+			JSObject *tmpObj = JSVAL_TO_OBJECT(argv[0]);
+			proxy = jsb_get_js_proxy(tmpObj);
+			arg0 = (cocos2d::ui::LayoutParameter*)(proxy ? proxy->ptr : NULL);
+			JSB_PRECONDITION2( arg0, cx, JS_FALSE, "Invalid Native Object");
+		} while (0);
+		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
+		cobj->setLayoutParameter(arg0);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
 
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
 JSBool js_cocos2dx_studio_Widget_didNotSelectSelf(JSContext *cx, uint32_t argc, jsval *vp)
@@ -8213,44 +8219,38 @@ JSBool js_cocos2dx_studio_Widget_getColor(JSContext *cx, uint32_t argc, jsval *v
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_setFlipY(JSContext *cx, uint32_t argc, jsval *vp)
+JSBool js_cocos2dx_studio_Widget_getSizePercent(JSContext *cx, uint32_t argc, jsval *vp)
 {
-	jsval *argv = JS_ARGV(cx, vp);
-	JSBool ok = JS_TRUE;
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
 	js_proxy_t *proxy = jsb_get_js_proxy(obj);
 	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
 	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 1) {
-		JSBool arg0;
-		ok &= JS_ValueToBoolean(cx, argv[0], &arg0);
-		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
-		cobj->setFlipY(arg0);
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	if (argc == 0) {
+		cocos2d::CCPoint ret = cobj->getSizePercent();
+		jsval jsret;
+		jsret = ccpoint_to_jsval(cx, ret);
+		JS_SET_RVAL(cx, vp, jsret);
 		return JS_TRUE;
 	}
 
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_setFlipX(JSContext *cx, uint32_t argc, jsval *vp)
+JSBool js_cocos2dx_studio_Widget_getTouchStartPos(JSContext *cx, uint32_t argc, jsval *vp)
 {
-	jsval *argv = JS_ARGV(cx, vp);
-	JSBool ok = JS_TRUE;
 	JSObject *obj = JS_THIS_OBJECT(cx, vp);
 	js_proxy_t *proxy = jsb_get_js_proxy(obj);
 	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
 	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 1) {
-		JSBool arg0;
-		ok &= JS_ValueToBoolean(cx, argv[0], &arg0);
-		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
-		cobj->setFlipX(arg0);
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	if (argc == 0) {
+		cocos2d::CCPoint ret = cobj->getTouchStartPos();
+		jsval jsret;
+		jsret = ccpoint_to_jsval(cx, ret);
+		JS_SET_RVAL(cx, vp, jsret);
 		return JS_TRUE;
 	}
 
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
 JSBool js_cocos2dx_studio_Widget_removeAllChildrenWithCleanup(JSContext *cx, uint32_t argc, jsval *vp)
@@ -8286,6 +8286,26 @@ JSBool js_cocos2dx_studio_Widget_sortAllChildren(JSContext *cx, uint32_t argc, j
 	}
 
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	return JS_FALSE;
+}
+JSBool js_cocos2dx_studio_Widget_setActionTag(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	jsval *argv = JS_ARGV(cx, vp);
+	JSBool ok = JS_TRUE;
+	JSObject *obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	if (argc == 1) {
+		int arg0;
+		ok &= jsval_to_int32(cx, argv[0], (int32_t *)&arg0);
+		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
+		cobj->setActionTag(arg0);
+		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		return JS_TRUE;
+	}
+
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
 JSBool js_cocos2dx_studio_Widget_ignoreContentAdaptWithSize(JSContext *cx, uint32_t argc, jsval *vp)
@@ -8347,23 +8367,6 @@ JSBool js_cocos2dx_studio_Widget_clippingParentAreaContainPoint(JSContext *cx, u
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
 	return JS_FALSE;
 }
-JSBool js_cocos2dx_studio_Widget_getSizePercent(JSContext *cx, uint32_t argc, jsval *vp)
-{
-	JSObject *obj = JS_THIS_OBJECT(cx, vp);
-	js_proxy_t *proxy = jsb_get_js_proxy(obj);
-	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
-	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 0) {
-		cocos2d::CCPoint ret = cobj->getSizePercent();
-		jsval jsret;
-		jsret = ccpoint_to_jsval(cx, ret);
-		JS_SET_RVAL(cx, vp, jsret);
-		return JS_TRUE;
-	}
-
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
-	return JS_FALSE;
-}
 JSBool js_cocos2dx_studio_Widget_removeFromParentAndCleanup(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	jsval *argv = JS_ARGV(cx, vp);
@@ -8377,26 +8380,6 @@ JSBool js_cocos2dx_studio_Widget_removeFromParentAndCleanup(JSContext *cx, uint3
 		ok &= JS_ValueToBoolean(cx, argv[0], &arg0);
 		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
 		cobj->removeFromParentAndCleanup(arg0);
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
-		return JS_TRUE;
-	}
-
-	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
-	return JS_FALSE;
-}
-JSBool js_cocos2dx_studio_Widget_setOpacity(JSContext *cx, uint32_t argc, jsval *vp)
-{
-	jsval *argv = JS_ARGV(cx, vp);
-	JSBool ok = JS_TRUE;
-	JSObject *obj = JS_THIS_OBJECT(cx, vp);
-	js_proxy_t *proxy = jsb_get_js_proxy(obj);
-	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
-	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
-	if (argc == 1) {
-		uint16_t arg0;
-		ok &= jsval_to_uint16(cx, argv[0], &arg0);
-		JSB_PRECONDITION2(ok, cx, JS_FALSE, "Error processing arguments");
-		cobj->setOpacity(arg0);
 		JS_SET_RVAL(cx, vp, JSVAL_VOID);
 		return JS_TRUE;
 	}
@@ -8745,6 +8728,23 @@ JSBool js_cocos2dx_studio_Widget_isFocused(JSContext *cx, uint32_t argc, jsval *
 	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
 	return JS_FALSE;
 }
+JSBool js_cocos2dx_studio_Widget_isFlipY(JSContext *cx, uint32_t argc, jsval *vp)
+{
+	JSObject *obj = JS_THIS_OBJECT(cx, vp);
+	js_proxy_t *proxy = jsb_get_js_proxy(obj);
+	cocos2d::ui::Widget* cobj = (cocos2d::ui::Widget *)(proxy ? proxy->ptr : NULL);
+	JSB_PRECONDITION2( cobj, cx, JS_FALSE, "Invalid Native Object");
+	if (argc == 0) {
+		bool ret = cobj->isFlipY();
+		jsval jsret;
+		jsret = BOOLEAN_TO_JSVAL(ret);
+		JS_SET_RVAL(cx, vp, jsret);
+		return JS_TRUE;
+	}
+
+	JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 0);
+	return JS_FALSE;
+}
 JSBool js_cocos2dx_studio_Widget_setSizeType(JSContext *cx, uint32_t argc, jsval *vp)
 {
 	jsval *argv = JS_ARGV(cx, vp);
@@ -8937,13 +8937,12 @@ void js_register_cocos2dx_studio_Widget(JSContext *cx, JSObject *global) {
 	static JSFunctionSpec funcs[] = {
 		JS_FN("addChild", js_cocos2dx_studio_Widget_addChild, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setSizePercent", js_cocos2dx_studio_Widget_setSizePercent, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("updateSizeAndPosition", js_cocos2dx_studio_Widget_updateSizeAndPosition, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getCustomSize", js_cocos2dx_studio_Widget_getCustomSize, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("isFlipX", js_cocos2dx_studio_Widget_isFlipX, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("setActionTag", js_cocos2dx_studio_Widget_setActionTag, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setFlippedY", js_cocos2dx_studio_Widget_setFlipY, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setFlippedX", js_cocos2dx_studio_Widget_setFlipX, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getDescription", js_cocos2dx_studio_Widget_getDescription, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getLeftInParent", js_cocos2dx_studio_Widget_getLeftInParent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("isFlipY", js_cocos2dx_studio_Widget_isFlipY, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setOpacity", js_cocos2dx_studio_Widget_setOpacity, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getTouchEndPos", js_cocos2dx_studio_Widget_getTouchEndPos, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getChildren", js_cocos2dx_studio_Widget_getChildren, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getNodes", js_cocos2dx_studio_Widget_getNodes, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
@@ -8952,7 +8951,7 @@ void js_register_cocos2dx_studio_Widget(JSContext *cx, JSObject *global) {
 		JS_FN("getName", js_cocos2dx_studio_Widget_getName, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("isIgnoreContentAdaptWithSize", js_cocos2dx_studio_Widget_isIgnoreContentAdaptWithSize, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getWidgetType", js_cocos2dx_studio_Widget_getWidgetType, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("setLayoutParameter", js_cocos2dx_studio_Widget_setLayoutParameter, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("updateSizeAndPosition", js_cocos2dx_studio_Widget_updateSizeAndPosition, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getBottomInParent", js_cocos2dx_studio_Widget_getBottomInParent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getActionTag", js_cocos2dx_studio_Widget_getActionTag, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getLayoutParameter", js_cocos2dx_studio_Widget_getLayoutParameter, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
@@ -8961,10 +8960,11 @@ void js_register_cocos2dx_studio_Widget(JSContext *cx, JSObject *global) {
 		JS_FN("getChildByName", js_cocos2dx_studio_Widget_getChildByName, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("isEnabled", js_cocos2dx_studio_Widget_isEnabled, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeNodeByTag", js_cocos2dx_studio_Widget_removeNodeByTag, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("isFlippedX", js_cocos2dx_studio_Widget_isFlipX, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeAllChildren", js_cocos2dx_studio_Widget_removeAllChildren, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("isTouchEnabled", js_cocos2dx_studio_Widget_isTouchEnabled, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getContentSize", js_cocos2dx_studio_Widget_getContentSize, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("getTouchStartPos", js_cocos2dx_studio_Widget_getTouchStartPos, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setLayoutParameter", js_cocos2dx_studio_Widget_setLayoutParameter, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("didNotSelectSelf", js_cocos2dx_studio_Widget_didNotSelectSelf, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setFocused", js_cocos2dx_studio_Widget_setFocused, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setTouchEnabled", js_cocos2dx_studio_Widget_setTouchEnabled, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
@@ -8976,16 +8976,15 @@ void js_register_cocos2dx_studio_Widget(JSContext *cx, JSObject *global) {
 		JS_FN("addNode", js_cocos2dx_studio_Widget_addNode, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeFromParent", js_cocos2dx_studio_Widget_removeFromParent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getColor", js_cocos2dx_studio_Widget_getColor, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("setFlipY", js_cocos2dx_studio_Widget_setFlipY, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("setFlipX", js_cocos2dx_studio_Widget_setFlipX, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getSizePercent", js_cocos2dx_studio_Widget_getSizePercent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("getTouchStartPos", js_cocos2dx_studio_Widget_getTouchStartPos, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeAllChildrenWithCleanup", js_cocos2dx_studio_Widget_removeAllChildrenWithCleanup, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("sortAllChildren", js_cocos2dx_studio_Widget_sortAllChildren, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("setActionTag", js_cocos2dx_studio_Widget_setActionTag, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("ignoreContentAdaptWithSize", js_cocos2dx_studio_Widget_ignoreContentAdaptWithSize, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("isBright", js_cocos2dx_studio_Widget_isBright, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("clippingParentAreaContainPoint", js_cocos2dx_studio_Widget_clippingParentAreaContainPoint, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("getSizePercent", js_cocos2dx_studio_Widget_getSizePercent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeFromParentAndCleanup", js_cocos2dx_studio_Widget_removeFromParentAndCleanup, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-		JS_FN("setOpacity", js_cocos2dx_studio_Widget_setOpacity, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getTopInParent", js_cocos2dx_studio_Widget_getTopInParent, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("getOpacity", js_cocos2dx_studio_Widget_getOpacity, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setColor", js_cocos2dx_studio_Widget_setColor, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
@@ -9002,6 +9001,7 @@ void js_register_cocos2dx_studio_Widget(JSContext *cx, JSObject *global) {
 		JS_FN("hitTest", js_cocos2dx_studio_Widget_hitTest, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("removeChild", js_cocos2dx_studio_Widget_removeChild, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("isFocused", js_cocos2dx_studio_Widget_isFocused, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
+		JS_FN("isFlippedY", js_cocos2dx_studio_Widget_isFlipY, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setSizeType", js_cocos2dx_studio_Widget_setSizeType, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("checkChildInfo", js_cocos2dx_studio_Widget_checkChildInfo, 3, JSPROP_PERMANENT | JSPROP_ENUMERATE),
 		JS_FN("setSize", js_cocos2dx_studio_Widget_setSize, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),

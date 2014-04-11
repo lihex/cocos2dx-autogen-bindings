@@ -1532,6 +1532,18 @@ void js_register_cocos2dx_CCCatmullRomBy(JSContext *cx, JSObject *global);
 void register_all_cocos2dx(JSContext* cx, JSObject* obj);
 JSBool js_cocos2dx_CCCatmullRomBy_initWithDuration(JSContext *cx, uint32_t argc, jsval *vp);
 
+extern JSClass  *jsb_CCActionIntervalForJs_class;
+extern JSObject *jsb_CCActionIntervalForJs_prototype;
+
+JSBool js_cocos2dx_CCActionIntervalForJs_constructor(JSContext *cx, uint32_t argc, jsval *vp);
+void js_cocos2dx_CCActionIntervalForJs_finalize(JSContext *cx, JSObject *obj);
+void js_register_cocos2dx_CCActionIntervalForJs(JSContext *cx, JSObject *global);
+void register_all_cocos2dx(JSContext* cx, JSObject* obj);
+JSBool js_cocos2dx_CCActionIntervalForJs_startWithTarget(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCActionIntervalForJs_stop(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCActionIntervalForJs_update(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCActionIntervalForJs_CCActionIntervalForJs(JSContext *cx, uint32_t argc, jsval *vp);
+
 extern JSClass  *jsb_CCAtlasNode_class;
 extern JSObject *jsb_CCAtlasNode_prototype;
 
@@ -1738,6 +1750,8 @@ JSBool js_cocos2dx_CCSprite_addChild(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_setTexture(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_isFlipX(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_getTexture(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCSprite_setFlipY(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_CCSprite_setFlipX(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_setScaleY(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_setScale(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_setOpacity(JSContext *cx, uint32_t argc, jsval *vp);
@@ -1763,8 +1777,6 @@ JSBool js_cocos2dx_CCSprite_setRotationX(JSContext *cx, uint32_t argc, jsval *vp
 JSBool js_cocos2dx_CCSprite_setScaleX(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_initWithTexture(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_setTextureAtlas(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool js_cocos2dx_CCSprite_setFlipY(JSContext *cx, uint32_t argc, jsval *vp);
-JSBool js_cocos2dx_CCSprite_setFlipX(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_removeAllChildrenWithCleanup(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_sortAllChildren(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_CCSprite_setAtlasIndex(JSContext *cx, uint32_t argc, jsval *vp);

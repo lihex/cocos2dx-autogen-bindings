@@ -5004,6 +5004,36 @@ initWithDuration : function () {},
 };
 
 /**
+ * @class CCActionIntervalForJs
+ */
+cc.ActionIntervalForJs = {
+
+/**
+ * @method startWithTarget
+ * @param {cocos2d::CCNode*}
+ */
+startWithTarget : function () {},
+
+/**
+ * @method stop
+ */
+stop : function () {},
+
+/**
+ * @method update
+ * @param {float}
+ */
+update : function () {},
+
+/**
+ * @method CCActionIntervalForJs
+ * @constructor
+ */
+CCActionIntervalForJs : function () {},
+
+};
+
+/**
  * @class CCAtlasNode
  */
 cc.AtlasNode = {
@@ -5831,6 +5861,18 @@ isFlipX : function () {},
 getTexture : function () {},
 
 /**
+ * @method setFlipY
+ * @param {bool}
+ */
+setFlipY : function () {},
+
+/**
+ * @method setFlipX
+ * @param {bool}
+ */
+setFlipX : function () {},
+
+/**
  * @method setScaleY
  * @param {float}
  */
@@ -5964,18 +6006,6 @@ setScaleX : function () {},
  * @param {cocos2d::CCTextureAtlas*}
  */
 setTextureAtlas : function () {},
-
-/**
- * @method setFlipY
- * @param {bool}
- */
-setFlipY : function () {},
-
-/**
- * @method setFlipX
- * @param {bool}
- */
-setFlipX : function () {},
 
 /**
  * @method removeAllChildrenWithCleanup

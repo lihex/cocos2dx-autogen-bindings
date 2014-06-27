@@ -112,6 +112,7 @@ JSBool js_cocos2dx_studio_CCBone_update(JSContext *cx, uint32_t argc, jsval *vp)
 JSBool js_cocos2dx_studio_CCBone_setDisplayManager(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_CCBone_getChildArmature(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_CCBone_changeDisplayWithIndex(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_CCBone_isNormalBlendfunc(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_CCBone_changeDisplayWithName(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_CCBone_getColliderBodyList(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_CCBone_setArmature(JSContext *cx, uint32_t argc, jsval *vp);
@@ -548,6 +549,7 @@ JSBool js_cocos2dx_studio_Button_getCapInsetNormalRenderer(JSContext *cx, uint32
 JSBool js_cocos2dx_studio_Button_setCapInsetsNormalRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_loadTexturePressed(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_setTitleFontName(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_Button_getTextRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_loadTextures(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_isScale9Enabled(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Button_getCapInsetDisabledRenderer(JSContext *cx, uint32_t argc, jsval *vp);
@@ -623,6 +625,7 @@ JSBool js_cocos2dx_studio_Label_getDescription(JSContext *cx, uint32_t argc, jsv
 JSBool js_cocos2dx_studio_Label_getVirtualRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Label_getTextHorizontalAlignment(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Label_getTextAreaSize(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_Label_getTextRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Label_setTextVerticalAlignment(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Label_getContentSize(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_Label_setFontSize(JSContext *cx, uint32_t argc, jsval *vp);
@@ -929,6 +932,56 @@ JSBool js_cocos2dx_studio_TouchGroup_clear(JSContext *cx, uint32_t argc, jsval *
 JSBool js_cocos2dx_studio_TouchGroup_create(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_TouchGroup_TouchGroup(JSContext *cx, uint32_t argc, jsval *vp);
 
+extern JSClass  *jsb_RichElement_class;
+extern JSObject *jsb_RichElement_prototype;
+
+JSBool js_cocos2dx_studio_RichElement_constructor(JSContext *cx, uint32_t argc, jsval *vp);
+void js_cocos2dx_studio_RichElement_finalize(JSContext *cx, JSObject *obj);
+void js_register_cocos2dx_studio_RichElement(JSContext *cx, JSObject *global);
+void register_all_cocos2dx_studio(JSContext* cx, JSObject* obj);
+JSBool js_cocos2dx_studio_RichElement_init(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichElement_RichElement(JSContext *cx, uint32_t argc, jsval *vp);
+
+extern JSClass  *jsb_RichElementText_class;
+extern JSObject *jsb_RichElementText_prototype;
+
+JSBool js_cocos2dx_studio_RichElementText_constructor(JSContext *cx, uint32_t argc, jsval *vp);
+void js_cocos2dx_studio_RichElementText_finalize(JSContext *cx, JSObject *obj);
+void js_register_cocos2dx_studio_RichElementText(JSContext *cx, JSObject *global);
+void register_all_cocos2dx_studio(JSContext* cx, JSObject* obj);
+JSBool js_cocos2dx_studio_RichElementText_init(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichElementText_create(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichElementText_RichElementText(JSContext *cx, uint32_t argc, jsval *vp);
+
+extern JSClass  *jsb_RichElementImage_class;
+extern JSObject *jsb_RichElementImage_prototype;
+
+JSBool js_cocos2dx_studio_RichElementImage_constructor(JSContext *cx, uint32_t argc, jsval *vp);
+void js_cocos2dx_studio_RichElementImage_finalize(JSContext *cx, JSObject *obj);
+void js_register_cocos2dx_studio_RichElementImage(JSContext *cx, JSObject *global);
+void register_all_cocos2dx_studio(JSContext* cx, JSObject* obj);
+JSBool js_cocos2dx_studio_RichElementImage_init(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichElementImage_create(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichElementImage_RichElementImage(JSContext *cx, uint32_t argc, jsval *vp);
+
+extern JSClass  *jsb_RichText_class;
+extern JSObject *jsb_RichText_prototype;
+
+JSBool js_cocos2dx_studio_RichText_constructor(JSContext *cx, uint32_t argc, jsval *vp);
+void js_cocos2dx_studio_RichText_finalize(JSContext *cx, JSObject *obj);
+void js_register_cocos2dx_studio_RichText(JSContext *cx, JSObject *global);
+void register_all_cocos2dx_studio(JSContext* cx, JSObject* obj);
+JSBool js_cocos2dx_studio_RichText_insertElement(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_pushBackElement(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_formatText(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_ignoreContentAdaptWithSize(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_setVerticalSpace(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_getContentSize(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_removeElement(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_getDescription(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_create(JSContext *cx, uint32_t argc, jsval *vp);
+JSBool js_cocos2dx_studio_RichText_RichText(JSContext *cx, uint32_t argc, jsval *vp);
+
 extern JSClass  *jsb_SceneReader_class;
 extern JSObject *jsb_SceneReader_prototype;
 
@@ -936,6 +989,7 @@ JSBool js_cocos2dx_studio_SceneReader_constructor(JSContext *cx, uint32_t argc, 
 void js_cocos2dx_studio_SceneReader_finalize(JSContext *cx, JSObject *obj);
 void js_register_cocos2dx_studio_SceneReader(JSContext *cx, JSObject *global);
 void register_all_cocos2dx_studio(JSContext* cx, JSObject* obj);
+JSBool js_cocos2dx_studio_SceneReader_getAttachComponentType(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_SceneReader_createNodeWithSceneFile(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_SceneReader_getNodeByTag(JSContext *cx, uint32_t argc, jsval *vp);
 JSBool js_cocos2dx_studio_SceneReader_purge(JSContext *cx, uint32_t argc, jsval *vp);

@@ -395,6 +395,12 @@ getChildArmature : function () {},
 changeDisplayWithIndex : function () {},
 
 /**
+ * @method isNormalBlendfunc
+ * @return A value converted from C/C++ "bool"
+ */
+isNormalBlendfunc : function () {},
+
+/**
  * @method changeDisplayWithName
  * @param {const char*}
  * @param {bool}
@@ -1753,6 +1759,7 @@ setBrightStyle : function () {},
 
 /**
  * @method removeFromParent
+ * @param {bool}
  */
 removeFromParent : function () {},
 
@@ -2285,6 +2292,12 @@ loadTexturePressed : function () {},
 setTitleFontName : function () {},
 
 /**
+ * @method getTextRenderer
+ * @return A value converted from C/C++ "cocos2d::CCLabelTTF*"
+ */
+getTextRenderer : function () {},
+
+/**
  * @method loadTextures
  * @param {const char*}
  * @param {const char*}
@@ -2619,6 +2632,12 @@ getTextHorizontalAlignment : function () {},
  * @return A value converted from C/C++ "cocos2d::CCSize"
  */
 getTextAreaSize : function () {},
+
+/**
+ * @method getTextRenderer
+ * @return A value converted from C/C++ "cocos2d::CCLabelTTF*"
+ */
+getTextRenderer : function () {},
 
 /**
  * @method setTextVerticalAlignment
@@ -4012,14 +4031,174 @@ TouchGroup : function () {},
 };
 
 /**
+ * @class RichElement
+ */
+ccs.RichElement = {
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ * @param {int}
+ * @param {cocos2d::ccColor3B}
+ * @param {unsigned char}
+ */
+init : function () {},
+
+/**
+ * @method RichElement
+ * @constructor
+ */
+RichElement : function () {},
+
+};
+
+/**
+ * @class RichElementText
+ */
+ccs.RichElementText = {
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ * @param {int}
+ * @param {cocos2d::ccColor3B}
+ * @param {unsigned char}
+ * @param {const char*}
+ * @param {const char*}
+ * @param {float}
+ */
+init : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::ui::RichElementText*"
+ * @param {int}
+ * @param {cocos2d::ccColor3B}
+ * @param {unsigned char}
+ * @param {const char*}
+ * @param {const char*}
+ * @param {float}
+ */
+create : function () {},
+
+/**
+ * @method RichElementText
+ * @constructor
+ */
+RichElementText : function () {},
+
+};
+
+/**
+ * @class RichElementImage
+ */
+ccs.RichElementImage = {
+
+/**
+ * @method init
+ * @return A value converted from C/C++ "bool"
+ * @param {int}
+ * @param {cocos2d::ccColor3B}
+ * @param {unsigned char}
+ * @param {const char*}
+ */
+init : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::ui::RichElementImage*"
+ * @param {int}
+ * @param {cocos2d::ccColor3B}
+ * @param {unsigned char}
+ * @param {const char*}
+ */
+create : function () {},
+
+/**
+ * @method RichElementImage
+ * @constructor
+ */
+RichElementImage : function () {},
+
+};
+
+/**
+ * @class RichText
+ */
+ccs.RichText = {
+
+/**
+ * @method insertElement
+ * @param {cocos2d::ui::RichElement*}
+ * @param {int}
+ */
+insertElement : function () {},
+
+/**
+ * @method pushBackElement
+ * @param {cocos2d::ui::RichElement*}
+ */
+pushBackElement : function () {},
+
+/**
+ * @method formatText
+ */
+formatText : function () {},
+
+/**
+ * @method ignoreContentAdaptWithSize
+ * @param {bool}
+ */
+ignoreContentAdaptWithSize : function () {},
+
+/**
+ * @method setVerticalSpace
+ * @param {float}
+ */
+setVerticalSpace : function () {},
+
+/**
+ * @method getContentSize
+ * @return A value converted from C/C++ "cocos2d::CCSize"
+ */
+getContentSize : function () {},
+
+/**
+ * @method getDescription
+ * @return A value converted from C/C++ "std::string"
+ */
+getDescription : function () {},
+
+/**
+ * @method create
+ * @return A value converted from C/C++ "cocos2d::ui::RichText*"
+ */
+create : function () {},
+
+/**
+ * @method RichText
+ * @constructor
+ */
+RichText : function () {},
+
+};
+
+/**
  * @class SceneReader
  */
 ccs.SceneReader = {
 
 /**
+ * @method getAttachComponentType
+ * @return A value converted from C/C++ "cocos2d::extension::AttachComponentType"
+ */
+getAttachComponentType : function () {},
+
+/**
  * @method createNodeWithSceneFile
  * @return A value converted from C/C++ "cocos2d::CCNode*"
  * @param {const char*}
+ * @param {cocos2d::extension::AttachComponentType}
  */
 createNodeWithSceneFile : function () {},
 

@@ -6739,6 +6739,7 @@ ccTouchMoved : function () {},
 /**
  * @method setTouchEnabled
  * @param {bool}
+ * @param {bool}
  */
 setTouchEnabled : function () {},
 
